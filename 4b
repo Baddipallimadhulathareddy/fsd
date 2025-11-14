@@ -1,0 +1,290 @@
+Experiment (b): Build a Simple Web Application using Spring MVC Pattern
+This experiment demonstrates the creation of a simple web application using the Spring MVC framework. Spring MVC follows the Model-View-Controller (MVC) design pattern, which separates application logic, user interface, and control flow for better maintainability and scalability.
+Aim:
+To develop a simple web application following the Model–View–Controller (MVC) pattern using the Spring Framework.
+Tools Required:
+• JDK 17 or later – https://www.oracle.com/java/technologies/javase-downloads.html
+• Apache Tomcat – https://tomcat.apache.org/
+• Spring Framework (via Maven)
+• IDE: Eclipse / IntelliJ IDEA / Spring Tool Suite (STS)
+• Maven – for project setup and dependency management
+Theory:
+Spring MVC is a framework that follows the Model–View–Controller design pattern:
+• Model – Represents the data and business logic.
+• View – Defines how the data is presented (HTML/JSP).
+• Controller – Handles requests, processes data, and returns views.
+
+Spring MVC Flow:
+1. Client sends a request to DispatcherServlet.
+2. DispatcherServlet forwards the request to the Controller.
+3. Controller interacts with Model and prepares data.
+4. DispatcherServlet passes data to the ViewResolver.
+5. ViewResolver renders the appropriate view for display.
+Procedure:
+1. Open Spring Tool Suite (STS) or Eclipse IDE.
+2. Create a new Maven project with packaging type WAR.
+3. Edit pom.xml to include dependencies for spring-webmvc and servlet-api.
+4. Create a Controller class named HomeController.java with @Controller annotation.
+5. Map controller to the root URL (/) using @RequestMapping.
+6. Add a JSP file (home.jsp) inside WEB-INF/views/ directory.
+7. Create dispatcher-servlet.xml configuration file for Spring MVC setup.
+8. Add web.xml to define DispatcherServlet mapping.
+9. Run the application on Apache Tomcat and verify the output.
+Source Code:
+pom.xml:
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>SpringMVCApp</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>6.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>
+HomeController.java:
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HomeController {
+
+    @RequestMapping("/")
+    public ModelAndView homePage() {
+        ModelAndView mv = new ModelAndView("home");
+        mv.addObject("message", "Welcome to Spring MVC Web Application!");
+        return mv;
+    }
+}
+dispatcher-servlet.xml:
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.example.controller" />
+    <mvc:annotation-driven />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>
+home.jsp:
+<html>
+<head>
+    <title>Spring MVC Home</title>
+</head>
+<body>
+    <h2>${message}</h2>
+</body>
+</html>
+web.xml:
+<web-app>
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
+Explanation:
+• The pom.xml file defines Maven dependencies for the Spring MVC framework.
+• The HomeController.java file acts as a controller handling incoming requests.
+• The dispatcher-servlet.xml file configures component scanning and view resolution.
+• The home.jsp file represents the view layer, displaying messages from the controller.
+• The web.xml file maps the DispatcherServlet to handle all requests to the application.
+Expected Output:
+When the project runs, visiting http://localhost:8080/SpringMVCApp/ displays the message:
+“Welcome to Spring MVC Web Application!”
+Result:
+The Spring MVC-based web application was successfully developed and executed, demonstrating the use of the Model–View–Controller pattern in Java web development.
+Madhu bangaram ❤, here are complete sentences in very simple words:
+
+
+---
+
+🌟 What is the experiment for?
+
+This experiment is done to create a simple web application using the Spring MVC framework.
+It teaches you how to separate the work of a web application into Model, View, and Controller for easy development.
+
+
+---
+
+📝 Procedure in simple full sentences
+
+1. First, open the STS or Eclipse IDE on your computer.
+
+
+2. Create a new Maven project and select WAR as the project type.
+
+
+3. Open the pom.xml file and add the Spring MVC and servlet dependencies.
+
+
+4. Create a controller class called HomeController.java to handle the main website request.
+
+
+5. Write the @RequestMapping code inside the controller to connect the URL to the page.
+
+
+6. Create a home.jsp file inside the WEB-INF/views folder to display the message on the screen.
+
+
+7. Create a dispatcher-servlet.xml file to set up the Spring MVC configuration.
+
+
+8. Add the web.xml file to connect the DispatcherServlet to your project.
+
+
+9. Finally, run the project on the Apache Tomcat server and open the browser to see the output.
+
+
+
+
+---
+
+If you want, I can also give a short 2-line version for each step.
+Madhu bangaram ❤, here is everything except the procedure explained in simple and short words:
+
+
+---
+
+🌟 Experiment Name
+
+Build a simple web application using the Spring MVC pattern.
+
+
+---
+
+🌟 Aim
+
+To create a small web application using the Spring MVC model–view–controller pattern.
+
+
+---
+
+🌟 Tools Required
+
+JDK 17 or above – to run Java programs.
+
+Apache Tomcat – to run the web application.
+
+Spring Framework – to build the MVC app.
+
+Maven – to add libraries easily.
+
+IDE (Eclipse/STS/IntelliJ) – to write and run the code.
+
+
+
+---
+
+🌟 Theory (Very Simple Words)
+
+What is Spring MVC?
+
+Spring MVC is a framework that helps you build web applications in a clean and organized way.
+
+Three Main Parts:
+
+1. Model – holds data and logic.
+
+
+2. View – shows the output on the screen (like JSP pages).
+
+
+3. Controller – receives user requests and decides what to show.
+
+
+
+How Spring MVC Works (Simple Flow):
+
+1. The user sends a request from the browser.
+
+
+2. The request first goes to DispatcherServlet.
+
+
+3. DispatcherServlet sends it to the Controller.
+
+
+4. Controller prepares data using the Model.
+
+
+5. The ViewResolver picks the correct JSP page.
+
+
+6. The page (View) is shown to the user.
+
+
+
+
+---
+
+🌟 Code Explanation (Simple Words)
+
+pom.xml
+
+This file adds Spring MVC and servlet libraries needed for the project.
+
+HomeController.java
+
+This file receives the request and sends a message to the JSP page.
+
+dispatcher-servlet.xml
+
+This file tells Spring where to find controllers and how to load JSP pages.
+
+home.jsp
+
+This is the webpage that shows the message.
+
+web.xml
+
+This file connects the DispatcherServlet to your project so it can handle all requests.
+
+
+---
+
+🌟 Expected Output
+
+The browser shows the message:
+“Welcome to Spring MVC Web Application!”
+
+
+---
+
+🌟 Result
+
+The Spring MVC web application works successfully and displays the output.
