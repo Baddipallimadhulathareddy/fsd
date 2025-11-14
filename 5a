@@ -1,0 +1,82 @@
+Experiment 5(a): Design and Normalize a Database Schema up to 3NF
+Aim
+To design a relational database schema and normalize it up to the Third Normal Form (3NF).
+Theory
+Database normalization is a process used to minimize data redundancy and improve data integrity. It involves dividing large tables into smaller related tables and defining relationships among them.
+Procedure / Steps
+1.	Install MySQL Server and MySQL Workbench.
+2.	Open MySQL Workbench and connect to your local MySQL server.
+3.	Create a new database using: CREATE DATABASE college;
+4.	Identify entities: STUDENT, COURSE, DEPARTMENT, ENROLLMENT.
+5.	Define relationships between entities using ER diagram tools.
+6.	Normalize tables from 1NF → 2NF → 3NF.
+7.	Create the final schema with foreign keys and constraints.
+Source Code / SQL Commands
+CREATE TABLE department (
+  department_id INT AUTO_INCREMENT PRIMARY KEY,
+  department_name VARCHAR(100),
+  department_head VARCHAR(100)
+);
+CREATE TABLE student (
+  student_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  dob DATE,
+  department_id INT,
+  email VARCHAR(100),
+  FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+CREATE TABLE course (
+  course_id INT AUTO_INCREMENT PRIMARY KEY,
+  course_name VARCHAR(100),
+  credits INT,
+  department_id INT,
+  FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+CREATE TABLE enrollment (
+  enroll_id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT,
+  course_id INT,
+  enrollment_date DATE,
+  grade VARCHAR(5),
+  FOREIGN KEY (student_id) REFERENCES student(student_id),
+  FOREIGN KEY (course_id) REFERENCES course(course_id)
+);
+Expected Output
+The schema should show separate tables for Student, Department, Course, and Enrollment with all keys properly defined.
+Result
+Database schema was successfully designed and normalized up to 3NF.
+CREATE DATABASE IF NOT EXISTS college; USE college;
+
+CREATE TABLE department(
+  department_id INT AUTO_INCREMENT PRIMARY KEY,
+  department_name VARCHAR(100),
+  department_head VARCHAR(100)
+);
+
+CREATE TABLE student(
+  student_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  dob DATE,
+  department_id INT,
+  email VARCHAR(100),
+  FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+
+CREATE TABLE course(
+  course_id INT AUTO_INCREMENT PRIMARY KEY,
+  course_name VARCHAR(100),
+  credits INT,
+  department_id INT,
+  FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+
+CREATE TABLE enrollment(
+  enroll_id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT,
+  course_id INT,
+  enrollment_date DATE,
+  grade VARCHAR(5),
+  FOREIGN KEY (student_id) REFERENCES student(student_id),
+  FOREIGN KEY (course_id) REFERENCES course(course_id),
+  UNIQUE(student_id, course_id)
+);
