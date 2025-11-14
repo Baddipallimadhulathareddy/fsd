@@ -1,0 +1,37 @@
+Experiment 5(b): Perform SQL-based CRUD Operations using MySQL
+Aim
+To perform Create, Read, Update, and Delete (CRUD) operations on the MySQL database created earlier.
+Theory
+CRUD operations are the fundamental actions used in persistent storage systems to manipulate data.
+Procedure / Steps
+1.	Install and launch MySQL Workbench.
+2.	Connect to your MySQL server and open the 'college' database.
+3.	Use CREATE TABLE commands to define the schema if not already present.
+4.	Insert sample records using INSERT INTO.
+5.	Retrieve records using SELECT.
+6.	Modify data using UPDATE.
+7.	Delete specific records using DELETE.
+Source Code / SQL Commands
+INSERT INTO department (department_name, department_head) VALUES ('CSE', 'Dr. Rao');
+INSERT INTO student (name, dob, department_id, email) VALUES ('Praneel', '1982-01-14', 1, 'praneel@example.com');
+SELECT * FROM student;
+UPDATE student SET email='updated@example.com' WHERE student_id=1;
+DELETE FROM student WHERE student_id=1;
+Expected Output
+Records should be inserted, displayed, updated, and deleted successfully from each table.
+Result
+CRUD operations on MySQL database were successfully executed and verified.
+USE college;
+
+-- CREATE (Insert)
+INSERT INTO department VALUES (NULL, 'CSE', 'Dr. Rao');
+INSERT INTO student VALUES (NULL, 'Praneel', '1982-01-14', 1, 'praneel@example.com');
+
+-- READ (Select)
+SELECT * FROM student;
+
+-- UPDATE (Modify)
+UPDATE student SET email='updated@example.com' WHERE student_id=1;
+
+-- DELETE (Remove)
+DELETE FROM student WHERE student_id=1;
