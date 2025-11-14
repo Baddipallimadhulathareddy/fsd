@@ -1,0 +1,17 @@
+Experiment 5(d): Plan and Manage Tasks using Agile Tools (Trello, Jira)
+Aim
+To learn Agile principles and manage project development using Trello and Jira tools.
+Theory
+Agile methodology is an iterative approach that promotes flexibility, collaboration, and customer satisfaction.
+Procedure / Steps
+1.	Sign up for a free Trello account at https://trello.com.
+2.	Create a new board named 'Full Stack Project'.
+3.	Add lists: Backlog, To Do, In Progress, Code Review, Done.
+4.	Add cards for each task and assign members and due dates.
+5.	Sign up for Jira at https://www.atlassian.com/software/jira.
+6.	Create a new project → Scrum template → Create backlog items and sprints.
+7.	Track sprint progress using Burndown charts and Kanban boards.
+Expected Output
+Students should demonstrate a working Trello/Jira board with tasks moving from Backlog → Done.
+Result
+Successfully planned and managed project tasks using Agile tools.
